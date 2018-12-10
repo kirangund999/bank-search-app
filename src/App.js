@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
-import SideBar from "./components/SideBar";
+import MainView from './components/MainView';
 
 class App extends Component {
   render() {
     return (
         <Router>
-          <SideBar></SideBar>
-          <MainView></MainView>
+          <MainView />
         </Router>
     );
   }

@@ -1,0 +1,7 @@
+.input-group input{
+    margin-top: 4px;
+}
+
+.autosuggestion-list{
+    position: absolute;
+}
