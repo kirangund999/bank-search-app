@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import AutoComplete from '../AutoComplete/AutoComplete';
 
 class Home extends React.Component{
 
@@ -22,7 +23,7 @@ class Home extends React.Component{
                 <h2>Bank Details</h2>
                 <div className="panel">
                     <div className=" input-group panel" role="menu">
-                        <input type="radio" name="bank-search" checked={this.state.searchBy === "bank"}  id="bank-search" onClick={this.openBankSearch} className=""/><label for="bank-search"> Bank Name and Branch Name</label>
+                        <input type="radio" name="bank-search" defaultChecked  id="bank-search" onClick={this.openBankSearch} className=""/><label for="bank-search"> Bank Name and Branch Name</label>
                         &nbsp;&nbsp;&nbsp;
                         <input type="radio" name="bank-search" id="branch-search" onClick={this.openIFSCSearch} className=""/><label for="branch-search"> IFSC Code</label>
                     </div>
@@ -41,10 +42,8 @@ export const BankSearchFields =  (props) => {
 
     return (
         <div className="input-group">
-            <input type="text" className="form-control" placeholder="Bank Name" onKeyUp={ props.handlebankKeyUp }/>
-            <AutoSuggestion list={props.bankList} onSelect={ props.onbankSelect} />
-            <input type="text" className="form-control" placeholder="Branch Name" onKeyUp={ props.handlebranchKeyUp}/> 
-            <AutoSuggestion list={props.branchList} onSelect={ props.onbranchSelect} /> 
+            <AutoComplete suggestedList={["AAA", "AAb", "ACC","ACE"]} placeholder={"Bank Name"}/> 
+            <AutoComplete suggestedList={[]} placeholder={"Branch Name"}/>  
         </div>
     );
 };
