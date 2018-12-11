@@ -1,0 +1,5 @@
+.suggestion-list.dropdown-menu{
+    display: block;
+    max-height: 300px;
+    overflow: auto;
+}

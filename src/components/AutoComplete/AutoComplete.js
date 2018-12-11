@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import './AutoComplete.css';
 
 class AutoComplete extends React.Component{
 
@@ -15,19 +16,32 @@ class AutoComplete extends React.Component{
     onSuggestionSelect = (e) => {
 
         this.setState({
-            inputValue: e.target.key,
+            inputValue: e.currentTarget.textContent,
             filteredList: []
+        }, 
+        
+        () => {
+            if(this.props.onValueChange){
+                this.props.onValueChange({...this.state});
+            }
+            
         });
+
+       
 
     }
 
     onTextChange = (e) => {
+
         const inputValue = e.target.value;
-        let filteredList = this.state.suggestedList.filter((item, idx) => {
-
-            return item.toLowerCase().indexOf(inputValue.toLocaleLowerCase()) != -1;
-        });
-
+        let suggestedList = this.props.suggestedList || [];
+        let filteredList = [];
+        if(inputValue){
+            filteredList = suggestedList.filter((item, idx) => {
+                return item.toLowerCase().indexOf(inputValue.toLocaleLowerCase()) === 0;
+            });
+        }
+        
         this.setState({filteredList: filteredList,  inputValue : inputValue});
 
     }
@@ -47,11 +61,11 @@ class AutoComplete extends React.Component{
 
         if(filteredList.length){
             suggestionList = (
-                <ul className="suggestion-list">
+                <ul className="suggestion-list dropdown-menu">
                     {filteredList.map((item, idx) => {
 
                         return (
-                            <li onClick={onSuggestionSelect} key={item} value={inputValue}>{item}</li>
+                            <li onClick={onSuggestionSelect} key={item} value={inputValue}><a href="#">{item}</a></li>
                         );
 
                     })}
@@ -60,12 +74,11 @@ class AutoComplete extends React.Component{
         }
 
         return (
-            <Fragment>
-                <input type="text"  onKeyDown={onKeyDown} onChange={onChange} value={inputValue} placeholder={this.props.placeholder} />
+            <div className="col-sm-10">
+                <input type="text" className="form-control" onKeyDown={onKeyDown} onChange={onChange} value={inputValue} placeholder={this.props.placeholder} />
                 { suggestionList}
-            </Fragment>
-
-        )
+            </div>
+        );
 
     }
 
