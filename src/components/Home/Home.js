@@ -88,7 +88,7 @@ class Home extends React.Component{
                     </div>
                     <div className="row">
                         <div className="col-sm-10">
-                        {(this.state.seachBy == "bank") ? <BankSearchFields bankList={this.state.bankList} branchList={this.state.branchList} onBankNameChange={this.onBankNameChange} onBranchNameChange={this.onBranchNameChange} /> :  <IFSCSearchFields onIFSCChange = {this.onIFSCChange}/>}
+                        {(this.state.seachBy == "bank") ? <BankSearchField bankList={this.state.bankList} branchList={this.state.branchList} onBankNameChange={this.onBankNameChange} onBranchNameChange={this.onBranchNameChange} /> :  <IFSCSearchField onIFSCChange = {this.onIFSCChange}/>}
                         </div>
                     </div>
                     <div className="row">
@@ -110,7 +110,7 @@ class Home extends React.Component{
 
 }
 
-const BankSearchFields =  (props) => {
+const BankSearchField =  (props) => {
 
     return (
         <div className="input-group" style={{display: "flex"}}>
@@ -120,7 +120,7 @@ const BankSearchFields =  (props) => {
     );
 };
 
-const IFSCSearchFields  = (props) => {
+const IFSCSearchField  = (props) => {
 
     return (
         <div className="input-group">
